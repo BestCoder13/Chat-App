@@ -9,13 +9,11 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const { login, isLoggingIng } = useAuthStore();
+  const { login, isLoggingIn } = useAuthStore();
 
-  const validateForm = () => {
-
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
+    login(formData);
   }
 
 
@@ -23,10 +21,11 @@ const LoginPage = () => {
     <div className='min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex justify-center items-center'>
       <div className="w-full max-w-md p-6 bg-gray-900 text-white rounded-xl shadow-lg">
         <div className='flex items-center justify-center flex-col '>
-          <div className='flex items-center justify-center bg-indigo-600 size-12 rounded-xl mb-5'>
+          <div className='flex items-center justify-center bg-indigo-600 size-12 rounded-xl mb-2'>
             <MessageSquare className='size-6 text-white' />
           </div>
-          <h1 className='text-2xl font-bold mt-3'>Login</h1>
+          <h1 className='text-2xl font-bold mt-2 '>Welcome Back</h1>
+          <p className='text-md  text-gray-400 '>Sign in to your account</p>
         </div>
 
         <form onSubmit={handleSubmit} className='space-y-6 mt-6'>
@@ -74,15 +73,15 @@ const LoginPage = () => {
           <button
             type="submit"
             className="w-full p-2 bg-indigo-600 hover:bg-indigo-700 transition rounded-lg flex items-center justify-center font-medium disabled:bg-gray-600"
-            disabled={isLoggingIng}
+            disabled={isLoggingIn}
           >
-            {isLoggingIng ? (
+            {isLoggingIn ? (
               <>
                 <Loader2 className="size-5 animate-spin mr-2" />
                 Loading...
               </>
             ) : (
-              "LOGIN"
+              "Sign In"
             )}
           </button>
         </form>
