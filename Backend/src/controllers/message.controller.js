@@ -6,6 +6,7 @@ import { getReceiverSocketId, io } from "../lib/socket.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
+    // this will get the users from the db
     const loggedInUserId = req.user._id;
     const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
 
@@ -21,6 +22,7 @@ export const getMessages = async (req, res) => {
     const { id: userToChatId } = req.params;
     const myId = req.user._id;
 
+    // finds all messages exchanged between two users
     const messages = await Message.find({
       $or: [
         { senderId: myId, receiverId: userToChatId },
